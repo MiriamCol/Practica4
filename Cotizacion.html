@@ -1,0 +1,83 @@
+<!--
+	Practica 4- Miriam Colino
+	Pagina secundaria Cotizacion (API)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+    function cargar(){
+
+        $.ajax(
+            {
+            type: 'get',
+            url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
+            success: function(result)
+            {
+                //document.getElementById('idElHome').innerHTML = result;
+                console.log(result)
+                const myString = JSON.stringify(result);
+                alert(myString)
+
+            },
+        });
+        }
+     </script>
+
+    <style>
+        .derecha {
+        margin: 1%;
+        position: absolute;
+        top=100%
+        right: 50%;
+        left: 90%;
+
+        }
+	</style>
+</head>
+
+<body onload=cargar()>
+    <div class="derecha">
+        <a href="index.html" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home" align="left"></span> Home
+        </a>
+    </div>
+
+    <div class="container-fluid p-5 text-white text-center" style="background-color:#fa9e56;">
+        <div style="position:absolute">
+            <img src="https://miriamcol.github.io/Practica4/Resources/logo-repsol-removebg-preview.png" width="40%" height="40%" align="left">
+        </div>
+        </br></br>
+
+        <h1 style="color:white;">Cotización en Bolsa</h1>
+    </div>
+
+    <footer>
+        <div class="container navbar-bottom text-center" style="width:100% ;background-color:#fa9e56;">
+            <p style="color:white;">
+                <strong>¡Síguenos en Redes Sociales y no te pierdas nada!</strong> <br/><br/>
+            </p>
+            <a href="https://twitter.com/Repsol" target="_blank">
+                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/TwitterLogo.png" alt="No se pudo encontrar">
+            </a>
+            <a  href="https://www.instagram.com/repsol/?hl=es" target="_blank">
+                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/InstagramLogo.png" alt="No se pudo encontrar">
+            </a>
+            <a  href="http://www.facebook.com/guiarepsol" target="_blank">
+                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/FacebookLogo.png" alt="No se pudo encontrar">
+            </a>
+            <a  href="http://www.linkedin.com/company/repsol" target="_blank">
+                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/LinkedinLogo.png" alt="No se pudo encontrar">
+            </a>
+            <a href="https://www.youtube.com/repsol" target="_blank">
+                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/YoutubeLogo.png" alt="No se pudo encontrar">
+            </a>
+        </div>
+    </footer>
+
+</body >
+
+</html>
