@@ -22,10 +22,9 @@
             url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
             success: function(result)
             {
-                document.getElementById('demo').innerHTML = result["Time Series (Daily)"]["2022-02-18"]["1. open"];
-                document.getElementById('demo').innerHTML = result["Time Series (Daily)"]["2021-02-18"]["1. open"];
-                //console.log([]])
-                //alert(result["Time Series (Daily)"]["2022-02-18"]["1. open"])
+
+
+                document.getElementById('demo').innerHTML=(result["Time Series (Daily)"]["2022-02-18"]["1. open"])
 
                 //const myString = JSON.stringify(result)
                 //alert(myString)
@@ -44,21 +43,21 @@
             success: function(result)
             {
 
-                  var body = document.getElementsByTagName("body")[0];
-                  var tabla   = document.createElement("table");
-                  var tblBody = document.createElement("tbody");
+               var body = document.getElementsByTagName("body")[0];
+               var tabla   = document.createElement("table");
+               var tblBody = document.createElement("tbody");
 
-                  for (var i = 0; i < 2; i++) {
+               for (var i = 0; i < 2; i++) {
 
-                    var hilera = document.createElement("tr");
+                var hilera = document.createElement("tr");
 
-                    for (var j = 0; j < 2; j++) {
+                for (var j = 0; j < 2; j++) {
 
-                      var celda = document.createElement("td");
-                      var textoCelda = document.createTextNode(result["Time Series (Daily)"]["2022-02-18"]["1. open"]);
-                      celda.appendChild(textoCelda);
-                      hilera.appendChild(celda);
-                    }
+                  var celda = document.createElement("td");
+                  var textoCelda = document.createTextNode(result["Time Series (Daily)"]["2022-02-18"]["1. open"]);
+                  celda.appendChild(textoCelda);
+                  hilera.appendChild(celda);
+                }
 
 
                     tblBody.appendChild(hilera);
@@ -136,7 +135,7 @@
 
                       var celda = document.createElement("td");
 
-                      var textoCelda = document.createTextNode(result["Monthly Time Series"][2022-02-18]["1. open"]);
+                      var textoCelda = document.createTextNode(result["Monthly Time Series"]["2022-02-18"]["1. open"]);
                       celda.appendChild(textoCelda);
                       hilera.appendChild(celda);
                     }
@@ -167,6 +166,7 @@
 
         }
 
+
 	</style>
 </head>
 
@@ -186,10 +186,14 @@
         <h1 style="color:white;">Cotización en Bolsa</h1>
     </div>
 
-    <!--<p id="demo">
 
-    </p>
-    -->
+
+        <!--
+        <p id="demo">
+
+        </p>
+        -->
+
 
     <div class="container">
         <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla1()" >DIARIO </button>
@@ -198,6 +202,11 @@
 
     </div>
 
+    <div style="background-image: url('https://miriamcol.github.io/Practica4/Resources/bolsa.jpg');opacity: 0.5;">
+            hjkfdslfhsdfhsdjkafhkjsdhfjkdsahjkfdsklfsd
+    </div>
+
+    <!--
     <footer>
         <nav class="navbar-absolute-bottom text-center" style="background-color: #fa9e56">
             <p style="color:white;">
@@ -220,6 +229,7 @@
             </a>
         </nav>
     </footer>
+    -->
 
 </body >
 
