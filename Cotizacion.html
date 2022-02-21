@@ -10,12 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-    function cargar(){
+    function cargar()
+    {
 
         $.ajax(
             {
@@ -23,14 +22,139 @@
             url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
             success: function(result)
             {
-                //document.getElementById('idElHome').innerHTML = result;
-                console.log(result)
-                const myString = JSON.stringify(result);
-                alert(myString)
+                document.getElementById('demo').innerHTML = result["Time Series (Daily)"]["2022-02-18"]["1. open"];
+                document.getElementById('demo').innerHTML = result["Time Series (Daily)"]["2021-02-18"]["1. open"];
+                //console.log([]])
+                //alert(result["Time Series (Daily)"]["2022-02-18"]["1. open"])
 
-            },
+                //const myString = JSON.stringify(result)
+                //alert(myString)
+
+            }
         });
-        }
+    }
+
+      function genera_tabla1()
+      {
+
+          $.ajax(
+            {
+            type: 'get',
+            url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
+            success: function(result)
+            {
+
+                  var body = document.getElementsByTagName("body")[0];
+                  var tabla   = document.createElement("table");
+                  var tblBody = document.createElement("tbody");
+
+                  for (var i = 0; i < 2; i++) {
+
+                    var hilera = document.createElement("tr");
+
+                    for (var j = 0; j < 2; j++) {
+
+                      var celda = document.createElement("td");
+                      var textoCelda = document.createTextNode(result["Time Series (Daily)"]["2022-02-18"]["1. open"]);
+                      celda.appendChild(textoCelda);
+                      hilera.appendChild(celda);
+                    }
+
+
+                    tblBody.appendChild(hilera);
+                  }
+
+
+                  tabla.appendChild(tblBody);
+                  body.appendChild(tabla);
+                  tabla.setAttribute("border", "3");
+
+
+            }
+        });
+
+      }
+      function genera_tabla2()
+      {
+
+          $.ajax(
+            {
+            type: 'get',
+            url: "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
+            success: function(result)
+            {
+
+                  var body = document.getElementsByTagName("body")[0];
+                  var tabla   = document.createElement("table");
+                  var tblBody = document.createElement("tbody");
+
+                  for (var i = 0; i < 2; i++) {
+
+                    var hilera = document.createElement("tr");
+
+                    for (var j = 0; j < 2; j++) {
+
+                      var celda = document.createElement("td");
+                      var textoCelda = document.createTextNode(result["Weekly Time Series"]["2022-02-18"]["1. open"]);
+                      celda.appendChild(textoCelda);
+                      hilera.appendChild(celda);
+                    }
+
+
+                    tblBody.appendChild(hilera);
+                  }
+
+
+                  tabla.appendChild(tblBody);
+                  body.appendChild(tabla);
+                  tabla.setAttribute("border", "2");
+
+
+            }
+        });
+
+      }
+      function genera_tabla3()
+      {
+
+          $.ajax(
+            {
+            type: 'get',
+            url: "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
+            success: function(result)
+            {
+
+                  var body = document.getElementsByTagName("body")[0];
+                  var tabla   = document.createElement("table");
+                  var tblBody = document.createElement("tbody");
+
+                  for (var i = 0; i < 2; i++) {
+
+                    var hilera = document.createElement("tr");
+
+                    for (var j = 0; j < 2; j++) {
+
+                      var celda = document.createElement("td");
+
+                      var textoCelda = document.createTextNode(result["Monthly Time Series"][2022-02-18]["1. open"]);
+                      celda.appendChild(textoCelda);
+                      hilera.appendChild(celda);
+                    }
+
+
+                    tblBody.appendChild(hilera);
+                  }
+
+
+                  tabla.appendChild(tblBody);
+                  body.appendChild(tabla);
+                  tabla.setAttribute("border", "2");
+
+
+            }
+        });
+
+      }
      </script>
 
     <style>
@@ -42,10 +166,11 @@
         left: 90%;
 
         }
+
 	</style>
 </head>
 
-<body onload=cargar()>
+<body onload="cargar()">
     <div class="derecha">
         <a href="index.html" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-home" align="left"></span> Home
@@ -61,8 +186,20 @@
         <h1 style="color:white;">Cotización en Bolsa</h1>
     </div>
 
+    <!--<p id="demo">
+
+    </p>
+    -->
+
+    <div class="container">
+        <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla1()" >DIARIO </button>
+        <button type="button" class="btn btn-primary btn-lg"  onclick="genera_tabla2()" >SEMANAL</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla3()">MENSUAL</button>
+
+    </div>
+
     <footer>
-        <div class="container navbar-bottom text-center" style="width:100% ;background-color:#fa9e56;">
+        <nav class="navbar-absolute-bottom text-center" style="background-color: #fa9e56">
             <p style="color:white;">
                 <strong>¡Síguenos en Redes Sociales y no te pierdas nada!</strong> <br/><br/>
             </p>
@@ -81,7 +218,7 @@
             <a href="https://www.youtube.com/repsol" target="_blank">
                 <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/YoutubeLogo.png" alt="No se pudo encontrar">
             </a>
-        </div>
+        </nav>
     </footer>
 
 </body >
