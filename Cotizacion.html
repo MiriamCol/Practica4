@@ -26,53 +26,55 @@
                 document.getElementById('demo').innerHTML=(result["Time Series (Daily)"]["2022-02-18"]["1. open"])
                 //const myString = JSON.stringify(result)
                 //alert(myString)
-
             }
         });
     }
 
+    function genera_tabla1()
+    {
 
-      function genera_tabla1()
-      {
+        fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                crearTabla(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
 
-          $.ajax(
-            {
-            type: 'get',
-            url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
-            success: function(result)
-            {
+          function crearData(data)
+          {
+              console.log(data["Meta Data"]["1. Information"]);
 
-               var body = document.getElementById('hola');
-               var tabla   = document.createElement("table");
-               var tblBody = document.createElement("tbody");
+              var body = document.getElementById('tabla');
+              var tabla   = document.createElement("table");
+              var tblBody = document.createElement("tbody");
 
-               for (var i = 0; i < 2; i++) {
+              for (var i = 0; i < 4; i++) {
 
-                var hilera = document.createElement("tr");
+                  var hilera = document.createElement("tr");
 
-                for (var j = 0; j < 2; j++) {
+                  var celda1 = document.createElement("td");
 
-                  var celda = document.createElement("td");
-                  var textoCelda = document.createTextNode(result["Time Series (Daily)"]["2022-02-18"]["1. open"]);
-                  celda.appendChild(textoCelda);
-                  hilera.appendChild(celda);
+                   var textoCelda1 = document.createTextNode(data["Meta Data"]["1. Information"]);
+                   celda1.appendChild(textoCelda1);
+
+                   hilera.appendChild(celda1);
+
+                   tblBody.appendChild(hilera);
+
                 }
-
-
-                    tblBody.appendChild(hilera);
-                  }
-
-
-                  tabla.appendChild(tblBody);
-                  body.appendChild(tabla);
-                  tabla.setAttribute("border", "3");
-                  tabla.style.color = "red";
-
+              tabla.appendChild(tblBody);
+              body.appendChild(tabla);
+              tabla.setAttribute("border", "3");
+              tabla.style.color = "red";
 
             }
-        });
 
-      }
+    }
+
       function genera_tabla2()
       {
 
@@ -83,7 +85,7 @@
             success: function(result)
             {
 
-                  var body = document.getElementById('hola');
+                  var body = document.getElementById('tabla');
                   var tabla   = document.createElement("table");
                   var tblBody = document.createElement("tbody");
 
@@ -124,7 +126,7 @@
             success: function(result)
             {
 
-                  var body = document.getElementById('hola');
+                  var body = document.getElementById('tabla');
                   var tabla   = document.createElement("table");
                   var tblBody = document.createElement("tbody");
 
@@ -204,7 +206,7 @@
     </div>
 
     <div style="background-image: url('https://miriamcol.github.io/Practica4/Resources/bolsa.jpg');opacity: 0.5; height:100%;">
-        <div id="hola">
+        <div id="tabla">
 
         </div>
     </div>
