@@ -38,19 +38,50 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla(data);
+                crearTabla1(data);
             })
             .catch(function (err) {
                 console.log('error: ' + err);
             });
 
-          function crearData(data)
+          function crearTabla1(data)
           {
-              console.log(data["Meta Data"]["1. Information"]);
+
+              console.log(data["Time Series (Daily)"]);
+              //console.log(JSON.stringify(data));
 
               var body = document.getElementById('tabla');
               var tabla   = document.createElement("table");
               var tblBody = document.createElement("tbody");
+
+              var hilera_titulo = document.createElement("tr");
+
+              var celda1_titulo = document.createElement("td");
+              var celda2_titulo = document.createElement("td");
+              var celda3_titulo = document.createElement("td");
+              var celda4_titulo = document.createElement("td");
+              var celda5_titulo = document.createElement("td");
+
+               var textoCelda1_titulo = document.createTextNode("Day");
+               var textoCelda2_titulo = document.createTextNode("Open");
+               var textoCelda3_titulo = document.createTextNode("High");
+               var textoCelda4_titulo = document.createTextNode("Close");
+               var textoCelda5_titulo = document.createTextNode("Volume");
+
+               celda1_titulo.appendChild(textoCelda1_titulo);
+               celda2_titulo.appendChild(textoCelda2_titulo);
+               celda3_titulo.appendChild(textoCelda3_titulo);
+               celda4_titulo.appendChild(textoCelda4_titulo);
+               celda5_titulo.appendChild(textoCelda5_titulo);
+
+               hilera_titulo.appendChild(celda1_titulo);
+               hilera_titulo.appendChild(celda2_titulo);
+               hilera_titulo.appendChild(celda3_titulo);
+               hilera_titulo.appendChild(celda4_titulo);
+               hilera_titulo.appendChild(celda5_titulo);
+
+               tblBody.appendChild(hilera_titulo);
+
 
               for (var i = 0; i < 4; i++) {
 
@@ -66,6 +97,9 @@
                    tblBody.appendChild(hilera);
 
                 }
+
+
+
               tabla.appendChild(tblBody);
               body.appendChild(tabla);
               tabla.setAttribute("border", "3");
@@ -75,47 +109,82 @@
 
     }
 
-      function genera_tabla2()
-      {
+     function genera_tabla2()
+    {
 
-          $.ajax(
-            {
-            type: 'get',
-            url: "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
-            success: function(result)
-            {
+        fetch('https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                crearTabla2(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
 
-                  var body = document.getElementById('tabla');
-                  var tabla   = document.createElement("table");
-                  var tblBody = document.createElement("tbody");
+          function crearTabla2(data)
+          {
+              console.log(data["Weekly Time Series"]);
 
-                  for (var i = 0; i < 2; i++) {
+              var body = document.getElementById('tabla');
+              var tabla   = document.createElement("table");
+              var tblBody = document.createElement("tbody");
 
-                    var hilera = document.createElement("tr");
+              var hilera_titulo = document.createElement("tr");
 
-                    for (var j = 0; j < 2; j++) {
+              var celda1_titulo = document.createElement("td");
+              var celda2_titulo = document.createElement("td");
+              var celda3_titulo = document.createElement("td");
+              var celda4_titulo = document.createElement("td");
+              var celda5_titulo = document.createElement("td");
 
-                      var celda = document.createElement("td");
-                      var textoCelda = document.createTextNode(result["Weekly Time Series"]["2022-02-18"]["1. open"]);
-                      celda.appendChild(textoCelda);
-                      hilera.appendChild(celda);
-                    }
+               var textoCelda1_titulo = document.createTextNode("Day");
+               var textoCelda2_titulo = document.createTextNode("Open");
+               var textoCelda3_titulo = document.createTextNode("High");
+               var textoCelda4_titulo = document.createTextNode("Close");
+               var textoCelda5_titulo = document.createTextNode("Volume");
+
+               celda1_titulo.appendChild(textoCelda1_titulo);
+               celda2_titulo.appendChild(textoCelda2_titulo);
+               celda3_titulo.appendChild(textoCelda3_titulo);
+               celda4_titulo.appendChild(textoCelda4_titulo);
+               celda5_titulo.appendChild(textoCelda5_titulo);
+
+               hilera_titulo.appendChild(celda1_titulo);
+               hilera_titulo.appendChild(celda2_titulo);
+               hilera_titulo.appendChild(celda3_titulo);
+               hilera_titulo.appendChild(celda4_titulo);
+               hilera_titulo.appendChild(celda5_titulo);
+
+               tblBody.appendChild(hilera_titulo);
 
 
-                    tblBody.appendChild(hilera);
-                  }
+              for (var i = 0; i < 4; i++) {
+
+                  var hilera = document.createElement("tr");
+
+                  var celda1 = document.createElement("td");
+
+                   var textoCelda1 = document.createTextNode(data["Meta Data"]["1. Information"]);
+                   celda1.appendChild(textoCelda1);
+
+                   hilera.appendChild(celda1);
+
+                   tblBody.appendChild(hilera);
+
+                }
 
 
-                  tabla.appendChild(tblBody);
-                  body.appendChild(tabla);
-                  tabla.setAttribute("border", "3");
-                  tabla.style.color = "red";
 
+              tabla.appendChild(tblBody);
+              body.appendChild(tabla);
+              tabla.setAttribute("border", "3");
+              tabla.style.color = "red";
 
             }
-        });
 
-      }
+    }
       function genera_tabla3()
       {
 
@@ -138,7 +207,7 @@
 
                       var celda = document.createElement("td");
 
-                      var textoCelda = document.createTextNode(result["Monthly Time Series"]["2022-02-18"]["1. open"]);
+                      var textoCelda = document.createTextNode(result["Monthly Time Series"]["2022-02-22"]["1. open"]);
                       celda.appendChild(textoCelda);
                       hilera.appendChild(celda);
                     }
@@ -168,6 +237,7 @@
             right: 50%;
             left: 90%;
         }
+
         footer {
           position: absolute;
           bottom: 0;
@@ -205,10 +275,19 @@
         <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla3()">MENSUAL</button>
     </div>
 
+    <!--
     <div style="background-image: url('https://miriamcol.github.io/Practica4/Resources/bolsa.jpg');opacity: 0.5; height:100%;">
-        <div id="tabla">
+        <div id="tabla" align="center">
 
         </div>
+    </div>
+    -->
+
+    <div class="container">
+        <!--
+        <img src="https://miriamcol.github.io/Practica4/Resources/bolsa.jpg" style="opacity: 0.5"; alt="Snow" style="width:100%;">
+        -->
+        <div id="tabla" align="center"></div>
     </div>
 
     <!--

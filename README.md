@@ -16,4 +16,4 @@ Miriam Colino Ruipérez- 201804334
 
 -Desde cualquiera de las páginas secundarias, se puede volver a la principal con el botón Home arriba a la derecha.
 
--En Cotizacion.html se hace uso de una API de cotizacion en bolsa de la compañia Repsol
+-En Cotizacion.html se hace uso de una API de cotizacion en bolsa de la compañia Repsol. 
