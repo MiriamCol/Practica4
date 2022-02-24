@@ -16,4 +16,5 @@ Miriam Colino Ruipérez- 201804334
 
 -Desde cualquiera de las páginas secundarias, se puede volver a la principal con el botón Home arriba a la derecha.
 
--En Cotizacion.html se hace uso de una API de cotizacion en bolsa de la compañia Repsol. 
+-En Cotizacion.html se hace uso de una API de cotizacion en bolsa de la compañia Repsol. Hago fetch de una API de bolsa de la compañia Repsol de la página web: www.alphavantage.com.
+Se muestra una tabla con información diaria, semanal y mensual, en cuanto se pulse el boton correspondiente.

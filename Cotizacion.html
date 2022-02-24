@@ -1,6 +1,8 @@
 <!--
 	Practica 4- Miriam Colino
 	Pagina secundaria Cotizacion (API)
+	Hago fetch de una API de bolsa de la compañia Repsol del pagina web www.alphavantage.com.
+	Se muestra una tabla con información diaria, semanal y mensual, en cuanto se pulse el boton correspondiente.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -14,21 +16,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
 
-    function cargar()
-    {
-
-        $.ajax(
-            {
-            type: 'get',
-            url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
-            success: function(result)
-            {
-                document.getElementById('demo').innerHTML=(result["Time Series (Daily)"]["2022-02-18"]["1. open"])
-                //const myString = JSON.stringify(result)
-                //alert(myString)
-            }
-        });
-    }
 
     //DIARIA
     function genera_tabla1()
