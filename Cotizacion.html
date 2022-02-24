@@ -39,70 +39,11 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla1(data);
+                crearTabla(data,"Time Series (Daily)");
             })
             .catch(function (err) {
                 console.log('error: ' + err);
             });
-
-          function crearTabla1(data)
-          {
-
-              console.log(data["Time Series (Daily)"]);
-              //console.log(JSON.stringify(data));
-
-              var body = document.getElementById('tabla');
-              var tabla   = document.createElement("table");
-              var tblBody = document.createElement("tbody");
-
-              var hilera_titulo = document.createElement("tr");
-
-              var celda1_titulo = document.createElement("td");
-              var celda2_titulo = document.createElement("td");
-              var celda3_titulo = document.createElement("td");
-              var celda4_titulo = document.createElement("td");
-              var celda5_titulo = document.createElement("td");
-
-               var textoCelda1_titulo = document.createTextNode("Day");
-               var textoCelda2_titulo = document.createTextNode("Open");
-               var textoCelda3_titulo = document.createTextNode("High");
-               var textoCelda4_titulo = document.createTextNode("Close");
-               var textoCelda5_titulo = document.createTextNode("Volume");
-
-               celda1_titulo.appendChild(textoCelda1_titulo);
-               celda2_titulo.appendChild(textoCelda2_titulo);
-               celda3_titulo.appendChild(textoCelda3_titulo);
-               celda4_titulo.appendChild(textoCelda4_titulo);
-               celda5_titulo.appendChild(textoCelda5_titulo);
-
-               hilera_titulo.appendChild(celda1_titulo);
-               hilera_titulo.appendChild(celda2_titulo);
-               hilera_titulo.appendChild(celda3_titulo);
-               hilera_titulo.appendChild(celda4_titulo);
-               hilera_titulo.appendChild(celda5_titulo);
-
-               tblBody.appendChild(hilera_titulo);
-
-              for (var i = 0; i < 4; i++) {
-
-                  var hilera = document.createElement("tr");
-
-                  var celda1 = document.createElement("td");
-
-                   var textoCelda1 = document.createTextNode("aqui iria el dia");
-                   celda1.appendChild(textoCelda1);
-
-                   hilera.appendChild(celda1);
-
-                   tblBody.appendChild(hilera);
-                }
-
-              tabla.appendChild(tblBody);
-              body.appendChild(tabla);
-              tabla.setAttribute("border", "3");
-              tabla.style.color = "red";
-
-            }
 
     }
 
@@ -116,81 +57,107 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla2(data);
+                crearTabla(data,"Weekly Time Series");
             })
             .catch(function (err) {
                 console.log('error: ' + err);
             });
 
-          function crearTabla2(data)
-          {
+    }
+
+
+    //MENSUAL
+     function genera_tabla3()
+    {
+
+        fetch('https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                crearTabla(data,"Monthly Time Series");
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+
+    }
+    function crearTabla(data,value)
+    {
               var body = document.getElementById('tabla');
               var tabla   = document.createElement("table");
               var tblBody = document.createElement("tbody");
 
-              /*
-
-              var fila = document.createElement("tr");
+              var fila_1 = document.createElement("tr");
 
               var celda1 = document.createElement("td");
               var celda2 = document.createElement("td");
               var celda3= document.createElement("td");
               var celda4 = document.createElement("td");
               var celda5 = document.createElement("td");
+              var celda6 = document.createElement("td");
 
                var textoCelda1 = document.createTextNode("Day");
                var textoCelda2 = document.createTextNode("Open");
                var textoCelda3 = document.createTextNode("High");
-               var textoCelda4 = document.createTextNode("Close");
-               var textoCelda5 = document.createTextNode("Volume");
+               var textoCelda4 = document.createTextNode("Low");
+               var textoCelda5 = document.createTextNode("Close");
+               var textoCelda6 = document.createTextNode("Volume");
 
                celda1.appendChild(textoCelda1);
                celda2.appendChild(textoCelda2);
                celda3.appendChild(textoCelda3);
                celda4.appendChild(textoCelda4);
                celda5.appendChild(textoCelda5);
+               celda6.appendChild(textoCelda6);
 
-               fila.appendChild(celda1);
-               fila.appendChild(celda2);
-               fila.appendChild(celda3);
-               fila.appendChild(celda4);
-               fila.appendChild(celda5);
+               fila_1.appendChild(celda1);
+               fila_1.appendChild(celda2);
+               fila_1.appendChild(celda3);
+               fila_1.appendChild(celda4);
+               fila_1.appendChild(celda5);
+               fila_1.appendChild(celda6);
 
-               tblBody.appendChild(hilera);
+               tblBody.appendChild(fila_1);
 
-               */
-               var data_2= data["Weekly Time Series"];
-               for(let key of Object.keys(data_2))
+
+               var data_1= data[value];
+               for(let key of Object.keys(data_1))
                {
 
-                      var fila_2 = document.createElement("tr");
+                      var fila_siguiente = document.createElement("tr");
 
-                      var celda6 = document.createElement("td");
                       var celda7 = document.createElement("td");
-                      var celda8= document.createElement("td");
-                      var celda9 = document.createElement("td");
+                      var celda8 = document.createElement("td");
+                      var celda9= document.createElement("td");
                       var celda10 = document.createElement("td");
+                      var celda11 = document.createElement("td");
+                      var celda12 = document.createElement("td");
 
 
-                       var textoCelda6 = document.createTextNode(data_2[key]["1. open"]);
-                       var textoCelda7 = document.createTextNode(data_2[key]["2. high"]);
-                       var textoCelda8 = document.createTextNode(data_2[key]["3. low"]);
-                       var textoCelda9 = document.createTextNode(data_2[key]["4. close"]);
-                       var textoCelda10 = document.createTextNode(data_2[key]["5. volume"]);
+                       var textoCelda7 = document.createTextNode(key);
+                       var textoCelda8 = document.createTextNode(data_1[key]["1. open"]);
+                       var textoCelda9 = document.createTextNode(data_1[key]["2. high"]);
+                       var textoCelda10 = document.createTextNode(data_1[key]["3. low"]);
+                       var textoCelda11 = document.createTextNode(data_1[key]["4. close"]);
+                       var textoCelda12 = document.createTextNode(data_1[key]["5. volume"]);
 
-                       celda6.appendChild(textoCelda6);
                        celda7.appendChild(textoCelda7);
                        celda8.appendChild(textoCelda8);
                        celda9.appendChild(textoCelda9);
                        celda10.appendChild(textoCelda10);
+                       celda11.appendChild(textoCelda11);
+                       celda12.appendChild(textoCelda12);
 
-                       fila_2.appendChild(celda6);
-                       fila_2.appendChild(celda7);
-                       fila_2.appendChild(celda8);
-                       fila_2.appendChild(celda9);
-                       fila_2.appendChild(celda10);
+                       fila_siguiente.appendChild(celda7);
+                       fila_siguiente.appendChild(celda8);
+                       fila_siguiente.appendChild(celda9);
+                       fila_siguiente.appendChild(celda10);
+                       fila_siguiente.appendChild(celda11);
+                       fila_siguiente.appendChild(celda12);
 
-                       tblBody.appendChild(fila_2);
+                       tblBody.appendChild(fila_siguiente);
 
             }
 
@@ -198,49 +165,10 @@
               body.appendChild(tabla);
               tabla.setAttribute("border", "3");
               tabla.style.color = "red";
-          }
 
     }
 
-    //MENSUAL
-      function genera_tabla3()
-      {
 
-          $.ajax(
-            {
-            type: 'get',
-            url: "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=REPYY&apikey=GLYG13Y49P0KIKR5",
-            success: function(result)
-            {
-
-                  var body = document.getElementById('tabla');
-                  var tabla   = document.createElement("table");
-                  var tblBody = document.createElement("tbody");
-
-                  for (var i = 0; i < 4; i++) {
-
-                    var hilera = document.createElement("tr");
-
-                    for (var j = 0; j < 2; j++) {
-
-                      var celda = document.createElement("td");
-
-                      var textoCelda = document.createTextNode(result["Monthly Time Series"]["2022-02-22"]["1. open"]);
-                      celda.appendChild(textoCelda);
-                      hilera.appendChild(celda);
-                    }
-
-                    tblBody.appendChild(hilera);
-                  }
-                  tabla.appendChild(tblBody);
-                  body.appendChild(tabla);
-                  tabla.setAttribute("border", "3");
-                  tabla.style.color = "red";
-
-            }
-        });
-
-      }
      </script>
 
     <style>
