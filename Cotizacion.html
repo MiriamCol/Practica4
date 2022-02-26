@@ -26,7 +26,10 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla(data,"Time Series (Daily)",'tabla1');
+                var data_particular= data["Time Series (Daily)"];
+                data_aux = Object.keys(data_particular);
+                array_acortado = data_aux.slice(0, 15);
+                crearTabla(data_particular,array_acortado,'tabla1');
             })
             .catch(function (err) {
                 console.log('error: ' + err);
@@ -44,7 +47,10 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla(data,"Weekly Time Series",'tabla2');
+                 var data_particular= data["Weekly Time Series"];
+                data_aux = Object.keys(data_particular);
+                array_acortado = data_aux.slice(0, 15);
+                crearTabla(data_particular,array_acortado,'tabla2');
             })
             .catch(function (err) {
                 console.log('error: ' + err);
@@ -62,7 +68,10 @@
                 return response.json();
             })
             .then(function (data) {
-                crearTabla(data,"Monthly Time Series",'tabla3');
+                var data_particular= data["Monthly Time Series"];
+                data_aux = Object.keys(data_particular);
+                array_acortado = data_aux.slice(0, 15);
+                crearTabla(data_particular,array_acortado,'tabla3');
             })
             .catch(function (err) {
                 console.log('error: ' + err);
@@ -70,7 +79,7 @@
 
 
     }
-    function crearTabla(data,value,div)
+    function crearTabla(data_particular,arrray_acortado,div)
     {
               var body = document.getElementById(div);
               var tabla   = document.createElement("table");
@@ -108,12 +117,15 @@
 
                tblBody.appendChild(fila_1);
 
+               var long=(array_acortado).length;
 
-               var data_1= data[value];
-               for(let key of Object.keys(data_1))
-               {
 
-                      var fila_siguiente = document.createElement("tr");
+                for(let i=0; i<long; i++)
+                {
+                    value=array_acortado[i];
+
+
+                     var fila_siguiente = document.createElement("tr");
 
                       var celda7 = document.createElement("td");
                       var celda8 = document.createElement("td");
@@ -123,12 +135,12 @@
                       var celda12 = document.createElement("td");
 
 
-                       var textoCelda7 = document.createTextNode(key);
-                       var textoCelda8 = document.createTextNode(data_1[key]["1. open"]);
-                       var textoCelda9 = document.createTextNode(data_1[key]["2. high"]);
-                       var textoCelda10 = document.createTextNode(data_1[key]["3. low"]);
-                       var textoCelda11 = document.createTextNode(data_1[key]["4. close"]);
-                       var textoCelda12 = document.createTextNode(data_1[key]["5. volume"]);
+                       var textoCelda7 = document.createTextNode(array_acortado[i]);
+                       var textoCelda8 = document.createTextNode(data_particular[value]["1. open"]);
+                       var textoCelda9 = document.createTextNode(data_particular[value]["2. high"]);
+                       var textoCelda10 = document.createTextNode(data_particular[value]["3. low"]);
+                       var textoCelda11 = document.createTextNode(data_particular[value]["4. close"]);
+                       var textoCelda12 = document.createTextNode(data_particular[value]["5. volume"]);
 
                        celda7.appendChild(textoCelda7);
                        celda8.appendChild(textoCelda8);
@@ -146,7 +158,7 @@
 
                        tblBody.appendChild(fila_siguiente);
 
-            }
+                }
 
               tabla.appendChild(tblBody);
               body.appendChild(tabla);
@@ -154,8 +166,7 @@
               tabla.style.color = "black";
 
 
-    }
-
+}
 
      </script>
 
@@ -202,14 +213,16 @@
         </br></br>
 
         <h1 style="color:white;">Cotización en Bolsa</h1>
+
     </div>
 
 
 
     <div class="container" style="text-align: center;">
-        <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla1()" >DIARIA </button>
-        <button type="button" class="btn btn-primary btn-lg"  onclick="genera_tabla2()" >SEMANAL</button>
-        <button type="button" class="btn btn-primary btn-lg" onclick="genera_tabla3()">MENSUAL</button>
+        <h3>Consulte el precio de apertura(Open), el máximo del día (High), el mínimo (Low), el precio de cierre (Close) y el volumen</h3>
+        <button type="button" class="btn btn-warning btn-lg" onclick="genera_tabla1()" >DIARIA <br> (Últimos 15 días) </button>
+        <button type="button" class="btn btn-warning btn-lg"  onclick="genera_tabla2()" >SEMANAL <br> (Últimas 15 semanas)</button>
+        <button type="button" class="btn btn-warning btn-lg" onclick="genera_tabla3()">MENSUAL <br> (Últimos 15 meses)</button>
     </div>
 
     <!--
@@ -222,6 +235,7 @@
 
 
     <div class="Row">
+        <br>
         <div class="Column" id="tabla1"></div>
         <div class="Column" id="tabla2"></div>
         <div class="Column" id="tabla3"></div>
@@ -236,30 +250,6 @@
     <!--
     <img src="https://miriamcol.github.io/Practica4/Resources/bolsa.jpg" alt="Forest" width="100%" height="100%" style="opacity: 0.5";>
     -->
-
-
-    <footer>
-        <nav class="navbar-absolute-bottom text-center" style="background-color: #fa9e56">
-            <p style="color:white;">
-                <strong>¡Síguenos en Redes Sociales y no te pierdas nada!</strong> <br/><br/>
-            </p>
-            <a href="https://twitter.com/Repsol" target="_blank">
-                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/TwitterLogo.png" alt="No se pudo encontrar">
-            </a>
-            <a  href="https://www.instagram.com/repsol/?hl=es" target="_blank">
-                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/InstagramLogo.png" alt="No se pudo encontrar">
-            </a>
-            <a  href="http://www.facebook.com/guiarepsol" target="_blank">
-                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/FacebookLogo.png" alt="No se pudo encontrar">
-            </a>
-            <a  href="http://www.linkedin.com/company/repsol" target="_blank">
-                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/LinkedinLogo.png" alt="No se pudo encontrar">
-            </a>
-            <a href="https://www.youtube.com/repsol" target="_blank">
-                <img width="40" height="40" src="https://miriamcol.github.io/Practica4/Resources/YoutubeLogo.png" alt="No se pudo encontrar">
-            </a>
-        </nav>
-    </footer>
 
 
 
