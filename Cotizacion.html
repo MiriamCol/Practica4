@@ -81,11 +81,29 @@
     }
     function crearTabla(data_particular,arrray_acortado,div)
     {
+            var titulo;
+
+              if(div=='tabla1')
+              {
+                    titulo= "COTIZACIÓN DIARIA";
+              }
+              if(div=='tabla2')
+              {
+                    titulo= "COTIZACIÓN SEMANAL";
+              }
+              if(div=='tabla3')
+              {
+                    titulo="COTIZACIÓN MENSUAL";
+              }
               var body = document.getElementById(div);
               var tabla   = document.createElement("table");
               var tblBody = document.createElement("tbody");
 
+              var fila_0 = document.createElement("tr");
               var fila_1 = document.createElement("tr");
+
+
+              var celda0 = document.createElement("td");
 
               var celda1 = document.createElement("td");
               var celda2 = document.createElement("td");
@@ -93,6 +111,10 @@
               var celda4 = document.createElement("td");
               var celda5 = document.createElement("td");
               var celda6 = document.createElement("td");
+
+              var textoCelda0 = document.createTextNode(titulo);
+              fila_0.appendChild(textoCelda0);
+              tblBody.appendChild(fila_0);
 
                var textoCelda1 = document.createTextNode("Day");
                var textoCelda2 = document.createTextNode("Open");
