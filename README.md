@@ -19,5 +19,5 @@ Miriam Colino Ruipérez- 201804334
 NUEVO:
 
 -En Cotizacion.html se hace uso de una API de cotizacion en bolsa de la compañia Repsol. Hago fetch de la API en versión JSON de la página web: https://www.alphavantage.co/.
-Se muestra una tabla con información diaria, semanal y mensual, en cuanto se pulse el boton correspondiente. Se leen los datos del JSON y se muestran en las tablas los 15 primeros datos de cada uno.
+Se muestra una tabla con información diaria, semanal y mensual, en cuanto se pulse el botón correspondiente. Se leen los datos del JSON y se muestran en las tablas los 15 primeros datos de cada uno.
 Si tarda en aparecer la tabla después de dar al botón, puede ser debido a que la API solo puede ser llamada en una frecuencia de 5 veces por minuto. 
